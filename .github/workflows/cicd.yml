@@ -15,15 +15,14 @@ jobs:
          node-version: ${{ matrix.node-version }}
      - name: Build static site
        run: npm install && npm run build
-    steps:
-    - uses: actions/checkout@v1
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
-    - name: Deploy static site to S3 bucket
-      run: aws s3 sync ./build/ s3://<your-website-bucket> --acl=public-read --delete --exclude '.git/*'
-    - name: Clear CloudFront CDN Distribution
-      run: aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths /\*
+     - uses: actions/checkout@v1
+     - name: Configure AWS Credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+         aws-region: ${{ secrets.AWS_REGION }}
+     - name: Deploy static site to S3 bucket
+       run: aws s3 sync ./build/ s3://<your-website-bucket> --acl=public-read --delete --exclude '.git/*'
+     - name: Clear CloudFront CDN Distribution
+       run: aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths /\*
