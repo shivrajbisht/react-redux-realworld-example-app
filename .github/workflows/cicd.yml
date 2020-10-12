@@ -14,7 +14,7 @@ jobs:
        with:
          node-version: ${{ matrix.node-version }}
      - name: Build static site
-       run: npm install && npm run build
+       run: npm install && npm run build && pwd && ls -ltrh
        # Share artifact inside workflow
      - name: Share artifact inside workflow
        uses: actions/upload-artifact@v1
