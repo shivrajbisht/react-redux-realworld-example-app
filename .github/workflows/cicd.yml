@@ -27,7 +27,8 @@ jobs:
        with:
          name: react-github-actions-build
          path: /home/runner/work/react-redux-realworld-example-app/react-redux-realworld-example-app/react-github-actions-build
-     - uses: actions/checkout@v1
+         run: pwd && ls -altrh
+         #     - uses: actions/checkout@v1
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
        with:
