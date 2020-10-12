@@ -34,7 +34,7 @@ jobs:
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
      - name: Deploy static site to S3 bucket
-       run: aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }}/ --acl=public-read --delete --exclude '.git/*'
+       run: aws s3 sync ./build s3://${{ secrets.AWS_S3_BUCKET }}/ --acl=public-read --delete --exclude '.git/*'
        working-directory: react-github-actions-build
      - name: Clear CloudFront CDN Distribution
        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths /\*
