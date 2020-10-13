@@ -27,8 +27,6 @@ jobs:
        with:
          name: react-github-actions-build
          path: ./react-github-actions-build
-         #path: /home/runner/work/react-redux-realworld-example-app/react-redux-realworld-example-app/react-github-actions-build
-         run: pwd && ls -altrh
          #     - uses: actions/checkout@v1
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
@@ -37,7 +35,7 @@ jobs:
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
      - name: Deploy static site to S3 bucket
-       run: aws s3 sync ./ s3://${{ secrets.AWS_S3_BUCKET }}/ --acl=public-read --delete --exclude '.git/*'
+       run: pwd && ls -altrh && aws s3 sync ./ s3://${{ secrets.AWS_S3_BUCKET }}/ --acl=public-read --delete --exclude '.git/*'
        working-directory: react-github-actions-build
      - name: Clear CloudFront CDN Distribution
        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths /\*
