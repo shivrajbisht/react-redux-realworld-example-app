@@ -26,7 +26,7 @@ jobs:
        uses: actions/download-artifact@v1
        with:
          name: react-github-actions-build
-         path: ~/build
+         path: $(pwd)
          #path: /home/runner/work/react-redux-realworld-example-app/react-redux-realworld-example-app/react-github-actions-build
          run: pwd && ls -altrh
          #     - uses: actions/checkout@v1
